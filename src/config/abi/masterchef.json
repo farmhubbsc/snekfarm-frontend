@@ -18,7 +18,12 @@
 			},
 			{
 				"internalType": "address",
-				"name": "_riskFeeAddress",
+				"name": "_devFeeAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_communityFeeAddress",
 				"type": "address"
 			},
 			{
@@ -166,7 +171,12 @@
 			},
 			{
 				"internalType": "uint16",
-				"name": "_riskFeeBP",
+				"name": "_devFeeBP",
+				"type": "uint16"
+			},
+			{
+				"internalType": "uint16",
+				"name": "_communityFeeBP",
 				"type": "uint16"
 			},
 			{
@@ -188,6 +198,19 @@
 		"name": "add",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "communityFeeAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -219,6 +242,19 @@
 		"name": "dev",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "devFeeAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -365,12 +401,17 @@
 			},
 			{
 				"internalType": "uint16",
+				"name": "devFeeBP",
+				"type": "uint16"
+			},
+			{
+				"internalType": "uint16",
 				"name": "nestFeeBP",
 				"type": "uint16"
 			},
 			{
 				"internalType": "uint16",
-				"name": "riskFeeBP",
+				"name": "communityFeeBP",
 				"type": "uint16"
 			},
 			{
@@ -408,19 +449,6 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "riskFeeAddress",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
 		"inputs": [
 			{
 				"internalType": "uint256",
@@ -444,7 +472,7 @@
 			},
 			{
 				"internalType": "uint16",
-				"name": "_riskFeeBP",
+				"name": "_communityFeeBP",
 				"type": "uint16"
 			},
 			{
@@ -472,11 +500,11 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_feeAddress",
+				"name": "_communityFeeAddress",
 				"type": "address"
 			}
 		],
-		"name": "setFeeAddress",
+		"name": "setCommunityFeeAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -485,11 +513,24 @@
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "_riskFeeAddress",
+				"name": "_devFeeAddress",
 				"type": "address"
 			}
 		],
-		"name": "setRiskFeeAddress",
+		"name": "setDevFeeAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_feeAddress",
+				"type": "address"
+			}
+		],
+		"name": "setFeeAddress",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

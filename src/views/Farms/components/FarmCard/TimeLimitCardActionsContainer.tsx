@@ -58,15 +58,15 @@ const TimeLimitCardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, 
     }
   }, [onApprove])
 
-  const blackCol = {
-    color: 'black'
+  const snakeCol = {
+    color: 'wheat'
   }
   
   const renderApprovalOrStakeButton = () => {
     return isApproved ? (
         <TimeLimitStakeAction stakedBalance={stakedBalance} tokenBalance={tokenBalance} tokenName={lpName} pid={pid} depositFeeBP={depositFeeBP} />
       ) : (
-        <Button mt="8px" style={blackCol} fullWidth disabled={requestedApproval} onClick={handleApprove}>
+        <Button mt="8px" style={snakeCol} fullWidth disabled={requestedApproval} onClick={handleApprove}>
           Enable
         </Button>
       )

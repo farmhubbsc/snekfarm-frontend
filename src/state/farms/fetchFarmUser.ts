@@ -103,6 +103,16 @@ export const fetchFarmUserDepositTime = async( userAddr: string ) => {
 export const fetchFarmUserCooldowns = async (userAddr: string) => {
   const masterChefAdress = getMasterChefAddress();
 
+  const cooldownCalls = farmsConfig.map((farm) => {
+    return {
+      address: masterChefAdress,
+      name: 'poolInfo',
+      params: [farm.pid],
+    }
+  })
+
+  const rawPoolInfo = await multicall(masterchefABI, cooldownCalls)
+
   const calls = farmsConfig.map((farm) => {
     return {
       address: masterChefAdress,
@@ -111,8 +121,19 @@ export const fetchFarmUserCooldowns = async (userAddr: string) => {
     }
   })
 
+  let farmCount = 0;
+
   const rawBlockNums = await multicall(masterchefABI, calls)
   const parsedBlockNums = rawBlockNums.map((blocknums) => {
+
+    let poolCooldown = 0;
+
+    if( typeof( rawPoolInfo[ farmCount] ) === 'object' ) {
+      const limitHex = rawPoolInfo[farmCount].stakeTimeLimit._hex;
+      poolCooldown = parseInt( limitHex, 16 );
+    }
+
+    farmCount++;
 
     // Calculate cooldown based on current block number 
     const depositBlock = parseInt( blocknums[2]._hex, 16 );
@@ -126,7 +147,7 @@ export const fetchFarmUserCooldowns = async (userAddr: string) => {
     }
       
     // 25 200 block deposit cooldown 
-    const secondsBetweenDeposits = 75600
+    const secondsBetweenDeposits = poolCooldown * 3
     let secondsLeft = 0;
     
     if( secondsBetweenDeposits > secondsSinceDeposit && secondsSinceDeposit !== 0) {
@@ -139,6 +160,6 @@ export const fetchFarmUserCooldowns = async (userAddr: string) => {
 
     return new BigNumber(secondsLeft).toJSON()
   })
-
+  
   return parsedBlockNums
 }

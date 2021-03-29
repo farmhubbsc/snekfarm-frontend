@@ -210,6 +210,7 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
 
   return (
     <FCard>
+      {farm.tokenSymbol === 'SNEK' && <StyledCardAccent />}
       {thisPoolIsMostEfficient && <StyledCardAccent />}
       {cooldownTimer}
       <CardHeading
@@ -220,7 +221,28 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
         farmImage={farmImage}
         tokenSymbol={farm.tokenSymbol}
       />
-      
+      {!removed && (
+        <Flex justifyContent='space-between' alignItems='center'>
+          <Text>{TranslateString(352, 'APR')}:</Text>
+          <Text bold style={{ display: 'flex', alignItems: 'center' }}>
+            {farm.apy ? (
+              <>
+                <ApyButton
+                  lpLabel={lpLabel}
+                  quoteTokenAdresses={quoteTokenAdresses}
+                  quoteTokenSymbol={quoteTokenSymbol}
+                  tokenAddresses={tokenAddresses}
+                  cakePrice={cakePrice}
+                  apy={farm.apy}
+                />
+                {farmAPY}%
+              </>
+            ) : (
+              <Skeleton height={24} width={80} />
+            )}
+          </Text>
+        </Flex>
+      )}
       <Flex justifyContent='space-between'>
         <Text>{TranslateString(318, 'Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
