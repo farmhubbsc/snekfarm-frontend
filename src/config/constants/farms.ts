@@ -9,15 +9,15 @@ const farms: FarmConfig[] = [
     isTokenOnly: true,
     lpAddresses: {
       97: '',
-      56: '0x6e74C976E67Feae8E83635936Ef79F969e14E869',
+      56: '0xf5e5FCBCB37af39DE82054DEa1BDA9D00555550a',
     },
     tokenSymbol: 'SNEK',
     tokenAddresses: {
       97: '',
       56: '0x6e74C976E67Feae8E83635936Ef79F969e14E869',
     },
-    quoteTokenSymbol: QuoteToken.BNB,
-    quoteTokenAdresses: contracts.wbnb,
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
   },
 
   {
