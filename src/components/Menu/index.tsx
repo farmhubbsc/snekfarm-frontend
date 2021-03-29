@@ -25,7 +25,7 @@ const Menu = (props) => {
       setLang={setSelectedLanguage}
       cakePriceUsd={cakePriceUsd.toNumber()}
       links={config}
-      priceLink="https://unidexbeta.app/bscCharting?token=0x71F2f0ce6e858de06e94aad9eF0cD4FFFa298034"
+      priceLink="https://farmhub.community"
       {...props}
     />
   )

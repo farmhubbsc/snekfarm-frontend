@@ -109,6 +109,25 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
 
+  {
+    pid: 5,
+    risk: 5,
+    isTokenOnly: true,
+    isTimeLimit: true,
+    lpSymbol: 'TOAD',
+    lpAddresses: {
+      97: '',
+      56: '0x22D67B3f6aCdf8c0682f6FB20590E902DeEA6BA1',
+    },
+    tokenSymbol: 'TOAD',
+    tokenAddresses: {
+      97: '',
+      56: '0x22D67B3f6aCdf8c0682f6FB20590E902DeEA6BA1',
+    },
+    quoteTokenSymbol: QuoteToken.BUSD,
+    quoteTokenAdresses: contracts.busd,
+  },
+
   // {
   //   pid: 4,
   //   risk: 3,

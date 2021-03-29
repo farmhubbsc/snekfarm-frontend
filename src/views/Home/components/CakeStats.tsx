@@ -37,26 +37,32 @@ const CakeStats = () => {
     snekPerBlock = new BigNumber(farms[0].snekPerBlock).div(new BigNumber(10).pow(18)).toNumber();
   }
 
+  const logoStyle = {
+    maxWidth: '7%',
+    marginRight: '12px'
+  }
+
   return (
     <StyledCakeStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'Mouse Stats')}
+          <img src="https://snek.farm/images/snek/snek.png" style={logoStyle} alt="snek" />
+          {TranslateString(534, '🐍 Snek Stats')}
         </Heading>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Total MOUSE Supply')}</Text>
+          <Text fontSize="14px">🖇️ {TranslateString(536, 'Total Snek Supply')}</Text>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} decimals={0} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(999, 'Market Cap')}</Text>
+          <Text fontSize="14px">📈 {TranslateString(999, 'Market Cap')}</Text>
           <CardValue fontSize="14px" value={getBalanceNumber(marketCap)} decimals={0} prefix="$" />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(538, 'Total MOUSE Burned')}</Text>
+          <Text fontSize="14px">🔥 {TranslateString(538, 'Total Snek Burned')}</Text>
           <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(540, 'New MOUSE/block')}</Text>
+          <Text fontSize="14px">🐣 {TranslateString(540, 'New Snek/block')}</Text>
           <Text bold fontSize="14px">{snekPerBlock}</Text>
         </Row>
       </CardBody>
