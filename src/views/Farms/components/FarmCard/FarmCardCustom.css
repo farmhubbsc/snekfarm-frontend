@@ -1,0 +1,25 @@
+.farm-countdown {
+	font-size: 2rem;
+	margin-bottom: 3vh;
+}
+
+.farm-countdown-cooldown {
+	color: #ff6666;
+}
+
+.farm-countdown-farming {
+	color: lime;
+}
+
+.farm-countdown-nocooldown {
+	color: #c9c4d4;
+}
+
+.readable-button {
+	color: black !important;
+}
+
+.deposit-warning {
+	color: crimson;
+	text-align: left;
+}
