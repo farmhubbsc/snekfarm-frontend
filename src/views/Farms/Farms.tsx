@@ -118,9 +118,17 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
   		marginTop: '18px'
   	}
 
+    const linkStyle = {
+      textDecoration: 'underline',
+    }
+
+    const warningText = {
+      color: 'wheat',
+    }
+
   return (
     <Page>
-      <Heading as="h1" size="lg" color="primary" mb="50px" style={{ textAlign: 'center' }}>
+      <Heading as="h1" size="lg" color="primary" mb="50px" style={{ textAlign: 'center', color: 'wheat' }}>
         {
           tokenMode ?
             TranslateString(10002, 'Stake tokens to earn SNEK')
@@ -128,8 +136,13 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
           TranslateString(320, 'Stake LP tokens to earn SNEK')
         }
       </Heading>
-      <Heading as="h2" color="secondary" mb="50px" style={{ textAlign: 'center' }}>
-        Deposit Fee will be used to increase the value of Eagle&apos;s Nests!
+      <Heading as="h2" color="secondary" mb="50px" className="farm-description" style={{ textAlign: 'left', fontWeight: 400 }}>
+        <br/>
+        <span style={warningText}>- You can only earn rewards for 21 hours, if you stake for a longer time, you won&apos;t get more rewards</span>
+        <br/>
+        <span style={warningText}>- If your staking period has ended, you won&apos;t receive the full amount of SNEK!</span>
+        <br/>
+        <span style={warningText}>- For more information, visit our <a href="https://docs.farmhub.community" rel="noreferrer" target="_blank" style={linkStyle}> documentation page</a></span>
       </Heading>
       <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly}/>
       <div>
