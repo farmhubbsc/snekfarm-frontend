@@ -7,7 +7,6 @@ const farms: FarmConfig[] = [
     risk: 5,
     lpSymbol: 'SNEK',
     isTokenOnly: true,
-    isTimeLimit: true,
     lpAddresses: {
       97: '',
       56: '0x6e74C976E67Feae8E83635936Ef79F969e14E869',
