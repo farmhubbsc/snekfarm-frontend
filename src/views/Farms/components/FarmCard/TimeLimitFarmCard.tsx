@@ -200,7 +200,7 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
         coolDown = '7 D';
       }
 
-      clockIcon = <div className="stopwatch-container" style={stopWatchContainer} ><img src="http://localhost:3000/images/assets/clock.png" alt="timer" style={stopWatch} /><span style={timeCD}>{coolDown}</span></div>
+      clockIcon = <div className="stopwatch-container" style={stopWatchContainer} ><img src="https://snek.farm/images/assets/clock.png" alt="timer" style={stopWatch} /><span style={timeCD}>{coolDown}</span></div>
       
 
       const timeNum = farm.userData.cooldown
