@@ -102,7 +102,7 @@ const config: MenuEntry[] = [
     ],
   },
   {
-    label: 'Audit by Solidity (in progress)',
+    label: 'Audit by Solidity',
     icon: 'AuditIcon',
     href: 'https://solidity.finance/',
   },

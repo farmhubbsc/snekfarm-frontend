@@ -138,9 +138,11 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
       </Heading>
       <Heading as="h2" color="secondary" mb="50px" className="farm-description" style={{ textAlign: 'left', fontWeight: 400 }}>
         <br/>
-        <span style={warningText}>- You can only earn rewards for 21 hours, if you stake for a longer time, you won&apos;t get more rewards</span>
-        <br/>
         <span style={warningText}>- You will stop earning SNEK when the timer ends.</span>
+        <br/>
+        <span style={warningText}>- Farm time limit: 7 days.</span>
+        <br/>
+        <span style={warningText}>- Pool time limit: 21 hours.</span>
         <br/>
         <span style={warningText}>- Claiming your reward will unstake your funds.</span>
         <br/>
