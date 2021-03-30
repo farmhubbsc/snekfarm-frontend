@@ -195,11 +195,11 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
 
   let feeText;
   let feeAmount;
-  if( farm.pid === 0 ) {
-    feeText = <Text style={{ fontSize: '24px' }}>🦅 Fee:</Text>
+  if( farm.pid === 4 || farm.pid === 5 ) {
+    feeText = <Text style={{ fontSize: '24px' }}>🔥 Fee:</Text>
     feeAmount = <Text bold style={{ fontSize: '24px' }}>{farm.depositFeeBP / 100}%</Text>
   } else {
-    feeText = <Text style={{ fontSize: '24px' }}>🔥 Fee:</Text>
+    feeText = <Text style={{ fontSize: '24px' }}>🦅 Fee:</Text>
     feeAmount = <Text bold style={{ fontSize: '24px' }}>{farm.depositFeeBP / 100}%</Text>
   }
   
