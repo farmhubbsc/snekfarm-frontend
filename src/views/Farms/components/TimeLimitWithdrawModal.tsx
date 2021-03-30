@@ -50,7 +50,6 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
       </ModalActions>
-      <Text bold color="red">⚠️ WARNING: You should not claim your rewards until your time-limit has (nearly) ended ⚠️ </Text>
     </Modal>
   )
 }

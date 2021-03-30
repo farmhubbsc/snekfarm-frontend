@@ -60,9 +60,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
           {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
         </Button>
       </ModalActions>
-      <span className="deposit-warning"> - Your stake might affect the efficiency of the pool!</span>
-      <span className="deposit-warning"> - You can only feed for 21 hours! </span>
-      
+     
     </Modal>
   )
 }

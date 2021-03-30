@@ -140,7 +140,9 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
         <br/>
         <span style={warningText}>- You can only earn rewards for 21 hours, if you stake for a longer time, you won&apos;t get more rewards</span>
         <br/>
-        <span style={warningText}>- If your staking period has ended, you won&apos;t receive the full amount of SNEK!</span>
+        <span style={warningText}>- You will stop earning SNEK when the timer ends.</span>
+        <br/>
+        <span style={warningText}>- Claiming your reward will unstake your funds.</span>
         <br/>
         <span style={warningText}>- For more information, visit our <a href="https://docs.farmhub.community" rel="noreferrer" target="_blank" style={linkStyle}> documentation page</a></span>
       </Heading>
