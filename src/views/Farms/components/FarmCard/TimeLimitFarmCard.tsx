@@ -166,6 +166,26 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
 
  // getTimer()
 
+  let clockIcon;
+
+  const stopWatch = {
+    maxWidth: '10%',
+  }
+
+  const stopWatchContainer = {
+    display: 'flex',
+    justifyContent: 'flex-end',
+    color: 'wheat',
+    alignItems: 'center',
+    padding: '2px',
+
+  }
+
+  const timeCD = {
+    marginLeft: '7px',
+  }
+
+  let coolDown;
 
   let cooldownTimer;
   if( farm.userData !== undefined ) {
@@ -173,6 +193,16 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
 
     const prop = 'cooldown'
     if( prop in farm.userData ) {
+     
+      if( farm.isTokenOnly ) {
+        coolDown = '21 H';
+      } else {
+        coolDown = '7 D';
+      }
+
+      clockIcon = <div className="stopwatch-container" style={stopWatchContainer} ><img src="http://localhost:3000/images/assets/clock.png" alt="timer" style={stopWatch} /><span style={timeCD}>{coolDown}</span></div>
+      
+
       const timeNum = farm.userData.cooldown
       // Multiply by 1000 because it takes ms as parameter
       if( timeNum > 0 && stakeBal.isZero() ) {
@@ -208,8 +238,10 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
     thisPoolIsMostEfficient = true; 
   }
 
+
   return (
     <FCard>
+      {clockIcon}
       {farm.tokenSymbol === 'SNEK' && <StyledCardAccent />}
       {thisPoolIsMostEfficient && <StyledCardAccent />}
       {cooldownTimer}
