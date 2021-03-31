@@ -10,6 +10,8 @@ import useStake from '../../../../hooks/useStake'
 interface FarmCardActionsProps {
   earnings?: BigNumber
   pid?: number
+  depositBlock?: number
+  isTokenOnly?: boolean
 }
 
 const BalanceAndCompound = styled.div`
@@ -19,14 +21,51 @@ const BalanceAndCompound = styled.div`
   flex-direction: column;
 `
 
-const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
+const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, depositBlock, isTokenOnly }) => {
   const TranslateString = useI18n()
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useHarvest(pid)
   const { onStake } = useStake(pid)
 
   const rawEarningsBalance = getBalanceNumber(earnings)
-  const displayBalance = rawEarningsBalance.toLocaleString()
+  // const displayBalance = rawEarningsBalance.toLocaleString()
+
+  let processedEarnings = 0;
+  let testBlocks;
+  let testLimit;
+
+  if( depositBlock ) {
+    const currentBlock = JSON.parse(window.sessionStorage.getItem("blockNum") );
+    const blocksStaked = currentBlock - depositBlock;
+
+    let blockLimit = 0;
+    if( isTokenOnly ) {
+      blockLimit = 28800;
+    } else {
+      blockLimit = 201600;
+    }
+
+    testBlocks = blocksStaked;
+    testLimit = blockLimit;
+
+    let avgReward;
+
+    if( blocksStaked > blockLimit ) {
+      // console.log(parseInt(earnings.toString(), 10));
+      avgReward = ( (parseInt(earnings.toString(), 10)) / 1000000000000000000) / blocksStaked;
+      const maxReward = avgReward * blockLimit;
+      processedEarnings = maxReward;
+    }
+
+  }
+
+  let displayBalance;
+
+  if( processedEarnings ) {
+    displayBalance = processedEarnings;
+  } else {
+    displayBalance = earnings.toLocaleString();
+  }
 
   return (
     <Flex mb='8px' justifyContent='space-between' alignItems='center'>
@@ -47,16 +86,6 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
             {TranslateString(999, 'Compound')}
           </Button>
           : null}
-        <Button
-          disabled={rawEarningsBalance === 0 || pendingTx}
-          onClick={async () => {
-            setPendingTx(true)
-            await onReward()
-            setPendingTx(false)
-          }}
-        >
-          {TranslateString(999, 'Harvest')}
-        </Button>
       </BalanceAndCompound>
     </Flex>
   )

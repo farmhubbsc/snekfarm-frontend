@@ -27,13 +27,23 @@ interface FarmCardActionsProps {
   account?: string
 }
 
-
+// Harvest Card - below <Action> 
+// <Flex>
+//   <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
+//     {/* TODO: Is there a way to get a dynamic value here from useFarmFromSymbol? */}
+//     SNEK
+//   </Text>
+//   <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+//     {TranslateString(999, 'Earned')}
+//   </Text>
+// </Flex>
+// <HarvestAction earnings={earnings} pid={pid} depositBlock={depositBlock} isTokenOnly={farm.isTokenOnly} />
 
 const TimeLimitCardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }) => {
   const TranslateString = useI18n()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses, tokenAddresses, isTokenOnly, depositFeeBP } = useFarmFromPid(farm.pid)
-  const { allowance, tokenBalance, stakedBalance, earnings } = useFarmUser(pid)
+  const { allowance, tokenBalance, stakedBalance, earnings, depositBlock } = useFarmUser(pid)
   const lpAddress = lpAddresses[process.env.REACT_APP_CHAIN_ID]
   const tokenAddress = tokenAddresses[process.env.REACT_APP_CHAIN_ID];
   const lpName = farm.lpSymbol.toUpperCase()
@@ -74,13 +84,14 @@ const TimeLimitCardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, 
 
   return (
     <Action>
+      
+      
       <Flex>
-        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
-          Feeding 
-        </Text>
-        <Text>&nbsp;</Text>
         <Text bold textTransform="uppercase" color="secondary" fontSize="12px" pr="3px">
           {lpName}
+        </Text>
+        <Text bold textTransform="uppercase" color="textSubtle" fontSize="12px">
+          {TranslateString(999, 'Staked')}
         </Text>
       </Flex>
       {!account ? <UnlockButton mt="8px" fullWidth /> : renderApprovalOrStakeButton()}
