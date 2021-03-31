@@ -86,6 +86,16 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, depositB
             {TranslateString(999, 'Compound')}
           </Button>
           : null}
+        <Button
+          disabled={rawEarningsBalance === 0 || pendingTx}
+          onClick={async () => {
+            setPendingTx(true)
+            await onReward()
+            setPendingTx(false)
+          }}
+        >
+          {TranslateString(999, 'Harvest')}
+        </Button>
       </BalanceAndCompound>
     </Flex>
   )
