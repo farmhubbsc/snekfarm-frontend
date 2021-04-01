@@ -59,7 +59,7 @@ const CakeStats = () => {
         </Row>
         <Row>
           <Text fontSize="14px">🔥 {TranslateString(538, 'Total Snek Burned')}</Text>
-          <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
+          <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={2} />
         </Row>
         <Row>
           <Text fontSize="14px">🐣 {TranslateString(540, 'New Snek/block')}</Text>

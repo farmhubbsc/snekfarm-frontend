@@ -63,6 +63,22 @@ const StyledCardAccent = styled.div`
   z-index: -1;
 `
 
+const WithdrawCardAccent = styled.div`
+  background-image: linear-gradient(
+  315deg
+  ,#00b712,#5aff15 74%);
+  background-size: 300% 300%;
+  animation: ${RainbowLight} 2s linear infinite;
+  border-radius: 16px;
+  filter: blur(6px);
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  bottom: -2px;
+  left: -2px;
+  z-index: -1;
+`
+
 const FCard = styled.div`
   align-self: baseline;
   background: ${(props) => props.theme.card.background};
@@ -185,6 +201,8 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
     marginLeft: '7px',
   }
 
+  let canWithdraw = false;
+
   let coolDown;
 
   let cooldownTimer;
@@ -213,6 +231,7 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
         cooldownTimer = <span className="farm-countdown farm-countdown-nocooldown">Ready</span>
       } else {
         cooldownTimer = <span className="farm-countdown farm-countdown-nocooldown">Claim Now</span>
+        canWithdraw = true;
       }
       // } else if( stakeBal === zeroBig || farm.userData.depositBlock === zeroBig) {
         // cooldownTimer = <span className="farm-countdown farm-countdown-nocooldown">Ready</span>
@@ -244,6 +263,7 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
       {clockIcon}
       {farm.tokenSymbol === 'SNEK' && <StyledCardAccent />}
       {thisPoolIsMostEfficient && <StyledCardAccent />}
+      {canWithdraw && <WithdrawCardAccent/> }
       {cooldownTimer}
       <CardHeading
         lpLabel={lpLabel}

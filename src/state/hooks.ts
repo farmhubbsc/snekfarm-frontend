@@ -44,6 +44,7 @@ export const useFarmUser = (pid) => {
     tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
     stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
     earnings: farm.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
+    depositBlock: farm.userData ? farm.userData.depositBlock : 0,
   }
 }
 
