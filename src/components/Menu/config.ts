@@ -49,8 +49,8 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        icon: 'TradeIcon',
         href: 'https://exchange.snek.farm/#/swap?outputCurrency=0x6e74c976e67feae8e83635936ef79f969e14e869',
+        icon: 'TradeIcon',
       },
       {
         label: 'Liquidity',
