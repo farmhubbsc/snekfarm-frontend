@@ -38,14 +38,19 @@ const CakeStats = () => {
   }
 
   const logoStyle = {
-    maxWidth: '7%',
+    maxWidth: '5%',
     marginRight: '12px'
+  }
+
+  const txtCenter = {
+    display: 'flex',
+    alignItems: 'center',
   }
 
   return (
     <StyledCakeStats>
       <CardBody>
-        <Heading size="xl" mb="24px">
+        <Heading style={txtCenter} size="xl" mb="24px">
           <img src="https://snek.farm/images/snek/snek.png" style={logoStyle} alt="snek" />
           {TranslateString(534, '🐍 Snek Stats')}
         </Heading>

@@ -66,8 +66,15 @@ const FarmedStakingCard = () => {
     }
   }, [onReward])
 
-  const blackCol = {
-    color: 'black',
+
+  let harvestCol = {
+    color: 'wheat',
+  }
+
+  if( harvestableBalances.length <= 0 ) {
+      harvestCol = {
+        color: '#d7d7d7'
+      }
   }
 
   return (
@@ -93,7 +100,7 @@ const FarmedStakingCard = () => {
               id="harvest-all"
               disabled={harvestableBalances.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
-              style={blackCol}
+              style={harvestCol}
               fullWidth
             >
               {pendingTx
