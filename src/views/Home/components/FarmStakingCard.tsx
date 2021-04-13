@@ -91,18 +91,12 @@ const FarmedStakingCard = () => {
     justifyContent: 'center',
   }
 
+  const snekBuyURL = 'https://exchange.snek.farm/#/swap?outputCurrency=0x6e74c976e67feae8e83635936ef79f969e14e869'
+
   return (
     <StyledFarmStakingCard>
-    <Button
-              id="buysnek"
-              disabled={harvestableBalances.length <= 0 || pendingTx}
-              onClick={goToBuyScreen}
-              fullWidth
-              className="buy-snek-btn"
-            >
-              Buy SNEK
-            </Button>
-      <CardBody>
+    <a href={snekBuyURL} target="_blank" rel="noreferrer" className="buy-snek-btn" >Buy SNEK</a>
+    <CardBody>
         <Heading size="xl" mb="24px">
           {TranslateString(542, 'Farms & Staking')}
         </Heading>
