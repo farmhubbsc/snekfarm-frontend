@@ -9,14 +9,16 @@ const useStake = (pid: number) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
   const masterChefContract = useMasterchef()
+  const wallet = useWallet()
+  const blockNumber = wallet.getBlockNumber()
 
   const handleStake = useCallback(
     async (amount: string) => {
       const txHash = await stake(masterChefContract, pid, amount, account)
-      dispatch(fetchFarmUserDataAsync(account))
+      dispatch(fetchFarmUserDataAsync(account, blockNumber))
       console.info(txHash)
     },
-    [account, dispatch, masterChefContract, pid],
+    [account, blockNumber, dispatch, masterChefContract, pid],
   )
 
   return { onStake: handleStake }

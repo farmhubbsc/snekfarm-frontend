@@ -38,13 +38,16 @@ const Tvl: React.FC<FarmsProps> = (farmsProps) => {
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const {tokenMode} = farmsProps;
 
+  const wallet = useWallet()
+  const blockNumber = wallet.getBlockNumber()
+
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
     if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
+      dispatch(fetchFarmUserDataAsync(account, blockNumber))
     }
-  }, [account, dispatch, fastRefresh])
+  }, [account, blockNumber, dispatch, fastRefresh])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const activeFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier !== '0X')

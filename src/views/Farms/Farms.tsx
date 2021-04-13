@@ -20,6 +20,7 @@ import Divider from './components/Divider'
 
 export interface FarmsProps{
   tokenMode?: boolean
+  blockNum?: number
 }
 
 const Farms: React.FC<FarmsProps> = (farmsProps) => {
@@ -30,15 +31,15 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
-  const {tokenMode} = farmsProps;
+  const {tokenMode, blockNum} = farmsProps;
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
   useEffect(() => {
     if (account) {
-      dispatch(fetchFarmUserDataAsync(account))
+      dispatch(fetchFarmUserDataAsync(account, blockNum))
     }
-  }, [account, dispatch, fastRefresh])
+  }, [account, blockNum, dispatch, fastRefresh])
 
   const [stakedOnly, setStakedOnly] = useState(false)
   const activeFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier !== '0X')

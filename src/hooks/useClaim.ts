@@ -13,15 +13,17 @@ import { useMasterchef, useSousChef } from './useContract'
 const useClaim = (pid: number) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
+  const wallet = useWallet()
+  const blockNumber = wallet.getBlockNumber()
   const masterChefContract = useMasterchef()
 
   const handleClaim = useCallback(
     async () => {
       const txHash = await claim(masterChefContract, pid, account)
-      dispatch(fetchFarmUserDataAsync(account))
+      dispatch(fetchFarmUserDataAsync(account, blockNumber))
       console.info(txHash)
     },
-    [ account, dispatch, masterChefContract, pid ],
+    [ account, blockNumber, dispatch, masterChefContract, pid ],
   )
 
   return { onClaim: handleClaim }

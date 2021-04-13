@@ -100,7 +100,7 @@ export const fetchFarmUserDepositTime = async( userAddr: string ) => {
 }
 
 
-export const fetchFarmUserCooldowns = async (userAddr: string) => {
+export const fetchFarmUserCooldowns = async (userAddr: string, blockNumber: number) => {
   const masterChefAdress = getMasterChefAddress();
 
   const cooldownCalls = farmsConfig.map((farm) => {
@@ -137,8 +137,9 @@ export const fetchFarmUserCooldowns = async (userAddr: string) => {
 
     // Calculate cooldown based on current block number 
     const depositBlock = parseInt( blocknums[2]._hex, 16 );
-    const curBlock = window.sessionStorage.getItem("blockNum");
-    const curBlockInt = JSON.parse(curBlock)
+    // const curBlock = window.sessionStorage.getItem("blockNum");
+    // const curBlockInt = JSON.parse(curBlock)
+    const curBlockInt = blockNumber;
     const blocksSinceDeposit = curBlockInt - depositBlock;
     let secondsSinceDeposit = (blocksSinceDeposit * 3)
 

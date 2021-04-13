@@ -14,9 +14,9 @@ import useGetDocumentTitlePrice from './hooks/useGetDocumentTitlePrice'
 // Only pool is included in the main bundle because of it's the most visited page'
 const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
-const Memes = lazy(() => import('./views/Memes'))
-const Leaderboard = lazy(() => import('./views/Leaderboard'))
-const Layered = lazy(() => import('./views/Layered'))
+// const Memes = lazy(() => import('./views/Memes'))
+// const Leaderboard = lazy(() => import('./views/Leaderboard'))
+// const Layered = lazy(() => import('./views/Layered'))
 const Tvl = lazy(() => import('./views/Tvl'))
 // const Lottery = lazy(() => import('./views/Lottery'))
 // const Pools = lazy(() => import('./views/Pools'))
@@ -34,8 +34,10 @@ const App: React.FC = () => {
 	const { account, connect } = useWallet()
 	const totalValue = useTotalValue()
 	const wallet = useWallet()
+	let blockNumber = 0;
 	if (wallet.getBlockNumber != null) {
 		const theBlock = JSON.stringify(wallet.getBlockNumber())
+		blockNumber = wallet.getBlockNumber();
 		window.sessionStorage.setItem('blockNum', theBlock)
 	}
 	useEffect(() => {
@@ -58,19 +60,10 @@ const App: React.FC = () => {
 							<Home />
 						</Route>
 						<Route path="/farms">
-							<Farms />
+							<Farms blockNum={blockNumber}/>
 						</Route>
 						<Route path="/nests">
-							<Farms tokenMode />
-						</Route>
-						<Route path="/memes">
-							<Memes />
-						</Route>
-						<Route path="/leaderboard">
-							<Leaderboard />
-						</Route>
-						<Route path="/layered">
-							<Layered />
+							<Farms tokenMode blockNum={blockNumber}/>
 						</Route>
 						<Route path="/tvl">
 							<div className="tvl-amount">

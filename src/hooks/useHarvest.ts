@@ -9,12 +9,14 @@ export const useHarvest = (farmPid: number) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
   const masterChefContract = useMasterchef()
+  const wallet = useWallet()
+  const blockNumber = wallet.getBlockNumber()
 
   const handleHarvest = useCallback(async () => {
     const txHash = await harvest(masterChefContract, farmPid, account)
-    dispatch(fetchFarmUserDataAsync(account))
+    dispatch(fetchFarmUserDataAsync(account, blockNumber))
     return txHash
-  }, [account, dispatch, farmPid, masterChefContract])
+  }, [account, blockNumber, dispatch, farmPid, masterChefContract])
 
   return { onReward: handleHarvest }
 }

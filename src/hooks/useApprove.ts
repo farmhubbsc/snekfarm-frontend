@@ -11,17 +11,19 @@ import { useMasterchef, useCake, useSousChef, useLottery } from './useContract'
 export const useApprove = (lpContract: Contract) => {
   const dispatch = useDispatch()
   const { account }: { account: string } = useWallet()
+  const wallet = useWallet()
+  const blockNumber = wallet.getBlockNumber()
   const masterChefContract = useMasterchef()
 
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, masterChefContract, account)
-      dispatch(fetchFarmUserDataAsync(account))
+      dispatch(fetchFarmUserDataAsync(account, blockNumber))
       return tx
     } catch (e) {
       return false
     }
-  }, [account, dispatch, lpContract, masterChefContract])
+  }, [account, blockNumber, dispatch, lpContract, masterChefContract])
 
   return { onApprove: handleApprove }
 }
