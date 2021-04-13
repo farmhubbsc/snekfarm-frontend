@@ -1,0 +1,8 @@
+@media screen and (max-width: 768px) {
+	.fhub-info {
+		display: inline-block !important;
+		margin-top: 1vh;
+		margin-bottom: 0.5vh;
+	}
+}
+
