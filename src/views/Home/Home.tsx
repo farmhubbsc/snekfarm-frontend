@@ -59,21 +59,28 @@ const logoStyle = {
   marginTop: '2.5rem',
 }
 
+const heroStyle = {
+  marginTop: '3vh'
+}
+
 const Home: React.FC = () => {
   const TranslateString = useI18n()
 
   return (
     <Page>
-      <Hero>
+      
+      <Hero style={heroStyle}>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
           <img style={logoStyle} src="https://snek.farm/images/backgrounds/snek-logo.png" alt="Snek farm" />
         </Heading>
       </Hero>
       <div>
         <Cards>
+
           <FarmStakingCard />
           <CakeStats />
           <TotalValueLockedCard />
+          <FarmhubInfoCard/>
           <TwitterCard/>
         </Cards>
       </div>
