@@ -14,6 +14,7 @@ import useTokenBalance from '../../../hooks/useTokenBalance'
 import { getCakeAddress } from '../../../utils/addressHelpers'
 import useAllEarnings from '../../../hooks/useAllEarnings'
 import { getBalanceNumber } from '../../../utils/formatBalance'
+import './SnekBtn.css'
 
 const StyledFarmStakingCard = styled(Card)`
   background-image: url('/images/snek/2a.png');
@@ -39,6 +40,7 @@ const Actions = styled.div`
   margin-top: 24px;
 `
 
+
 const FarmedStakingCard = () => {
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
@@ -54,6 +56,10 @@ const FarmedStakingCard = () => {
   const harvestableBalances = balancesWithValue.filter((balanceType) => !balanceType.isTimeLimit);
 
   const { onReward } = useAllHarvest(harvestableBalances.map((farmWithBalance) => farmWithBalance.pid))
+
+  const goToBuyScreen = () => {
+    window.location.href = "https://exchange.snek.farm/#/swap?outputCurrency=0x6e74c976e67feae8e83635936ef79f969e14e869";
+  }
 
   const harvestAllFarms = useCallback(async () => {
     setPendingTx(true)
@@ -77,8 +83,25 @@ const FarmedStakingCard = () => {
       }
   }
 
+
+  const centerAlign = {
+    display: 'flex',
+    flexDirection: 'column' as any as 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+
   return (
     <StyledFarmStakingCard>
+    <Button
+              id="buysnek"
+              disabled={harvestableBalances.length <= 0 || pendingTx}
+              onClick={goToBuyScreen}
+              fullWidth
+              className="buy-snek-btn"
+            >
+              Buy SNEK
+            </Button>
       <CardBody>
         <Heading size="xl" mb="24px">
           {TranslateString(542, 'Farms & Staking')}
@@ -94,7 +117,7 @@ const FarmedStakingCard = () => {
           <CakeWalletBalance cakeBalance={cakeBalance} />
           <Label>~${(snekPrice * cakeBalance).toFixed(2)}</Label>
         </Block>
-        <Actions>
+        <Actions style={centerAlign}>
           {account ? (
             <Button
               id="harvest-all"
@@ -110,6 +133,7 @@ const FarmedStakingCard = () => {
           ) : (
             <UnlockButton fullWidth />
           )}
+          
         </Actions>
       </CardBody>
     </StyledFarmStakingCard>
