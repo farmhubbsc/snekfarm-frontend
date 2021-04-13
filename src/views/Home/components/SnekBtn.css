@@ -1,6 +1,6 @@
 .buy-snek-btn {
 	width: 10%;
-	color: wheat;
+	color: wheat !important;
 	margin-top: 1.5vh;
 	margin-left: 1vw;
 	background: linear-gradient(90deg, rgba(172,9,0,1) 0%, rgba(150,8,0,1) 35%, rgba(127,6,0,1) 100%);

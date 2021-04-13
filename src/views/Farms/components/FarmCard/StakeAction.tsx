@@ -24,8 +24,8 @@ const IconButtonWrapper = styled.div`
   }
 `
 
-  const blackCol = {
-    color: 'black'
+  const wheatCol = {
+    color: 'wheat'
   }
 
 const StakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalance, tokenName, pid, depositFeeBP}) => {
@@ -43,7 +43,7 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalan
 
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
-      <Button style={blackCol} onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</Button>
+      <Button style={wheatCol} onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</Button>
     ) : (
       <IconButtonWrapper>
         <IconButton variant="tertiary" onClick={onPresentWithdraw} mr="6px">

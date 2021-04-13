@@ -67,6 +67,10 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, depositB
     displayBalance = earnings.toLocaleString();
   }
 
+  const wheatCol = {
+    color: 'wheat'
+  }
+
   return (
     <Flex mb='8px' justifyContent='space-between' alignItems='center'>
       <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>{rawEarningsBalance.toLocaleString()}</Heading>
@@ -88,6 +92,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid, depositB
           : null}
         <Button
           disabled={rawEarningsBalance === 0 || pendingTx}
+          style={wheatCol}
           onClick={async () => {
             setPendingTx(true)
             await onReward()
