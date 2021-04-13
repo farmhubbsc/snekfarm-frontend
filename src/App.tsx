@@ -34,12 +34,16 @@ const App: React.FC = () => {
 	const { account, connect } = useWallet()
 	const totalValue = useTotalValue()
 	const wallet = useWallet()
-	let blockNumber = 0;
-	if (wallet.getBlockNumber != null) {
+	const blockNumber = wallet.getBlockNumber();
+
+	
+	// Deprecated 
+	if (wallet.getBlockNumber() != null) {
 		const theBlock = JSON.stringify(wallet.getBlockNumber())
-		blockNumber = wallet.getBlockNumber();
 		window.sessionStorage.setItem('blockNum', theBlock)
 	}
+
+
 	useEffect(() => {
 		if (!account && window.localStorage.getItem('accountStatus')) {
 			connect('injected')
