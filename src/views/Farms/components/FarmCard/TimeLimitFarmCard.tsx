@@ -257,9 +257,14 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
     thisPoolIsMostEfficient = true; 
   }
 
+  let testBlock;
+  if( farm.pid === 15 ) {
+    testBlock = GetBlockNum();
+  }
 
   return (
     <FCard>
+      {testBlock}
       {clockIcon}
       {farm.tokenSymbol === 'SNEK' && <StyledCardAccent />}
       {thisPoolIsMostEfficient && <StyledCardAccent />}
