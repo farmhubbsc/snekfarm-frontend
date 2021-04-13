@@ -264,7 +264,6 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
 
   return (
     <FCard>
-      {testBlock}
       {clockIcon}
       {farm.tokenSymbol === 'SNEK' && <StyledCardAccent />}
       {thisPoolIsMostEfficient && <StyledCardAccent />}

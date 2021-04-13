@@ -103,6 +103,25 @@ export const fetchFarmUserDepositTime = async( userAddr: string ) => {
 export const fetchFarmUserCooldowns = async (userAddr: string, blockNumber: number) => {
   const masterChefAdress = getMasterChefAddress();
 
+  // Fetch blocknumber from bscscan api because TRUST WALLET does not support BASIC FUCKING FUNCTIONALITY like wallet.GetBlockNumber()
+  const epoch = Math.round((new Date()).getTime() / 1000);
+  const apikey = process.env.REACT_APP_BSCSCAN_API_KEY
+  const url = `https://api.bscscan.com/api?module=block&action=getblocknobytime&timestamp=${epoch}&closest=before&apikey=${apikey}`
+  console.log(url)
+  let apiBlockNum = 0;
+
+  await fetch(url)
+  .then(response => response.json())
+    .then((jsonData) => {
+      if( jsonData.result !== null ) {
+        apiBlockNum = jsonData.result;
+      }
+    })
+    .catch((error) => {
+      // handle your errors here
+      console.error(error)
+  })
+
   const cooldownCalls = farmsConfig.map((farm) => {
     return {
       address: masterChefAdress,
@@ -139,7 +158,7 @@ export const fetchFarmUserCooldowns = async (userAddr: string, blockNumber: numb
     const depositBlock = parseInt( blocknums[2]._hex, 16 );
     // const curBlock = window.sessionStorage.getItem("blockNum");
     // const curBlockInt = JSON.parse(curBlock)
-    const curBlockInt = blockNumber;
+    const curBlockInt = apiBlockNum;
     const blocksSinceDeposit = curBlockInt - depositBlock;
     let secondsSinceDeposit = (blocksSinceDeposit * 3)
 
