@@ -158,7 +158,8 @@ export const fetchFarmUserCooldowns = async (userAddr: string, blockNumber: numb
     const depositBlock = parseInt( blocknums[2]._hex, 16 );
     // const curBlock = window.sessionStorage.getItem("blockNum");
     // const curBlockInt = JSON.parse(curBlock)
-    const curBlockInt = apiBlockNum;
+    // const curBlockInt = apiBlockNum;
+    const curBlockInt = blockNumber;
     const blocksSinceDeposit = curBlockInt - depositBlock;
     let secondsSinceDeposit = (blocksSinceDeposit * 3)
 
