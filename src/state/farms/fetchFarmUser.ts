@@ -107,7 +107,6 @@ export const fetchFarmUserCooldowns = async (userAddr: string, blockNumber: numb
   const epoch = Math.round((new Date()).getTime() / 1000);
   const apikey = process.env.REACT_APP_BSCSCAN_API_KEY
   const url = `https://api.bscscan.com/api?module=block&action=getblocknobytime&timestamp=${epoch}&closest=before&apikey=${apikey}`
-  console.log(url)
   let apiBlockNum = 0;
 
   await fetch(url)

@@ -9,6 +9,7 @@ import { useFarmFromPid, useFarmFromSymbol, useFarmUser } from 'state/hooks'
 import useI18n from 'hooks/useI18n'
 import UnlockButton from 'components/UnlockButton'
 import { useApprove } from 'hooks/useApprove'
+import { QuoteToken } from 'config/constants/types'
 import StakeAction from './StakeAction'
 import TimeLimitStakeAction from './TimeLimitStakeAction'
 import HarvestAction from './HarvestAction'
@@ -19,9 +20,12 @@ const Action = styled.div`
 `
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
+  tokensInChef?: number
 }
 
 interface FarmCardActionsProps {
+  cakePrice?: BigNumber 
+  bnbPrice?: BigNumber
   farm: FarmWithStakedValue
   ethereum?: provider
   account?: string
@@ -39,7 +43,7 @@ interface FarmCardActionsProps {
 // </Flex>
 // <HarvestAction earnings={earnings} pid={pid} depositBlock={depositBlock} isTokenOnly={farm.isTokenOnly} />
 
-const TimeLimitCardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }) => {
+const TimeLimitCardActions: React.FC<FarmCardActionsProps> = ({ cakePrice, bnbPrice, farm, ethereum, account }) => {
   const TranslateString = useI18n()
   const [requestedApproval, setRequestedApproval] = useState(false)
   const { pid, lpAddresses, tokenAddresses, isTokenOnly, depositFeeBP } = useFarmFromPid(farm.pid)
@@ -48,6 +52,36 @@ const TimeLimitCardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, 
   const tokenAddress = tokenAddresses[process.env.REACT_APP_CHAIN_ID];
   const lpName = farm.lpSymbol.toUpperCase()
   const isApproved = account && allowance && allowance.isGreaterThan(0)
+
+  
+
+  // Calculate value of LP token 
+  const stakedDollarValue: BigNumber = useMemo(() => {
+    const stakedAmount = stakedBalance.div(new BigNumber(10).pow(18)).div(farm.tokensInChef)
+
+    if( stakedBalance.isZero() ) {
+      return new BigNumber(0);
+    }
+
+    if (!farm.lpTotalInQuoteToken) {
+      return null
+    }
+    if (farm.quoteTokenSymbol === QuoteToken.BNB) {
+      return bnbPrice.times(farm.lpTotalInQuoteToken).times(stakedAmount)
+    }
+    if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
+      return cakePrice.times(farm.lpTotalInQuoteToken).times(stakedAmount)
+    }
+
+    if( farm.quoteTokenSymbol === QuoteToken.BUSD) {
+      return new BigNumber(1).times(farm.lpTotalInQuoteToken).times(stakedAmount)
+    }
+
+    const busd = new BigNumber(1)
+
+    return busd.times(stakedAmount)
+  }, [bnbPrice, cakePrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol, farm.tokensInChef, stakedBalance])
+
 
   const lpContract = useMemo(() => {
     if(isTokenOnly){
@@ -74,7 +108,7 @@ const TimeLimitCardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, 
   
   const renderApprovalOrStakeButton = () => {
     return isApproved ? (
-        <TimeLimitStakeAction stakedBalance={stakedBalance} tokenBalance={tokenBalance} tokenName={lpName} pid={pid} depositFeeBP={depositFeeBP} />
+        <TimeLimitStakeAction stakedBalance={stakedBalance} stakedDollarValue={stakedDollarValue} tokenBalance={tokenBalance} tokenName={lpName} pid={pid} depositFeeBP={depositFeeBP} />
       ) : (
         <Button mt="8px" style={snakeCol} fullWidth disabled={requestedApproval} onClick={handleApprove}>
           Enable

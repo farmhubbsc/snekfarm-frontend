@@ -113,8 +113,7 @@ const fetchFarms = async () => {
       const allocPoint = new BigNumber(info.allocPoint._hex)
       const poolWeight = allocPoint.div(new BigNumber(totalAllocPoint))
 
-      // console.log(info)
-      // console.log("^info bigc")
+      const tokensInChef = new BigNumber(lpTokenBalanceMC).div(new BigNumber(10).pow(18))
 
       return {
         ...farmConfig,
@@ -125,6 +124,7 @@ const fetchFarms = async () => {
         poolWeight: poolWeight.toNumber(),
         multiplier: `${allocPoint.div(100).toString()}X`,
         depositFeeBP: info.depositFeeBP + info.nestFeeBP + info.communityFeeBP + info.devFeeBP + info.burnFeeBP,
+        tokensInChef: tokensInChef.toJSON(),
         snekPerBlock: new BigNumber(snekPerBlock).toNumber(),
       }
     }),

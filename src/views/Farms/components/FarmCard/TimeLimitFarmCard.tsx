@@ -307,7 +307,7 @@ const TimeLimitFarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, 
         {feeText}
         {feeAmount}
       </Flex>
-      <TimeLimitCardActionsContainer farm={farm} ethereum={ethereum} account={account} />
+      <TimeLimitCardActionsContainer bnbPrice={bnbPrice} cakePrice={cakePrice} farm={farm} ethereum={ethereum} account={account} />
       <Divider />
       <ExpandableSectionButton
         onClick={() => setShowExpandableSection(!showExpandableSection)}

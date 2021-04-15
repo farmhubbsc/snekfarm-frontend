@@ -15,6 +15,7 @@ import TimeLimitWithdrawModal from '../TimeLimitWithdrawModal'
 
 interface FarmCardActionsProps {
   stakedBalance?: BigNumber
+  stakedDollarValue?: BigNumber
   tokenBalance?: BigNumber
   tokenName?: string
   pid?: number
@@ -28,7 +29,7 @@ const IconButtonWrapper = styled.div`
   }
 `
 
-const TimeLimitStakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalance, tokenName, pid, depositFeeBP}) => {
+const TimeLimitStakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, stakedDollarValue, tokenBalance, tokenName, pid, depositFeeBP}) => {
   const TranslateString = useI18n()
   const { onStake } = useStake(pid)
   // const { onUnstake } = useUnstake(pid)
@@ -42,6 +43,10 @@ const TimeLimitStakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, t
     <TimeLimitWithdrawModal max={stakedBalance} onConfirm={onClaim} tokenName={tokenName} />,
   )
 
+  const dollarValue = stakedDollarValue
+    ? `$${Number(stakedDollarValue).toLocaleString(undefined, { maximumFractionDigits: 2 })}`
+    : '-'
+
   const renderStakingButtons = () => {
     return rawStakedBalance === 0 ? (
       <Button className="readable-button" onClick={onPresentDeposit}>Deposit {tokenName}</Button>
@@ -52,9 +57,14 @@ const TimeLimitStakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, t
     )
   }
 
+  const dollarStyle = {
+    opacity: '0.5',
+    fontSize: '0.9rem'
+  }
+
   return (
     <Flex justifyContent="space-between" alignItems="center">
-      <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance}</Heading>
+      <Heading color={rawStakedBalance === 0 ? 'textDisabled' : 'text'}>{displayBalance} <span className="" style={dollarStyle}>({dollarValue})</span></Heading>
       {renderStakingButtons()}
     </Flex>
   )
