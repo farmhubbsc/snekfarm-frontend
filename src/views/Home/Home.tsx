@@ -9,6 +9,7 @@ import CakeStats from './components/CakeStats'
 import TotalValueLockedCard from './components/TotalValueLockedCard'
 import TwitterCard from './components/TwitterCard'
 import FarmhubInfoCard from './components/FarmhubInfoCard'
+import NestCard from './components/NestCard'
 
 const Hero = styled.div`
   align-items: center;
@@ -68,7 +69,7 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      
+      <NestCard />
       <Hero style={heroStyle}>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
           <img style={logoStyle} src="https://snek.farm/images/backgrounds/snek-logo.png" alt="Snek farm" />
@@ -76,7 +77,7 @@ const Home: React.FC = () => {
       </Hero>
       <div>
         <Cards>
-
+          
           <FarmStakingCard />
           <CakeStats />
           <TotalValueLockedCard />

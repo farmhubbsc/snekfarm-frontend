@@ -26,4 +26,7 @@ export default {
     56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     97: '',
   },
+  nestMaker: {
+    56: '0xf4f092d2FC1e28CE7954D3A38a739d05a33886e1',
+  }
 }

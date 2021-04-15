@@ -1,6 +1,24 @@
 import BigNumber from 'bignumber.js'
 import { ethers } from 'ethers'
 
+export const getCurrentNest = async( nestMakerContract, account ) => {
+  const nestNum = await nestMakerContract.methods.getCurrentVaultNum().call()
+  const curNest = await nestMakerContract.methods.vaults(nestNum-1).call()
+  const theAddress = curNest.vaultAddr
+  return { theAddress, nestNum }
+}
+
+export const getNestAddress = async( nestMakerContract, num, account ) => {
+  return nestMakerContract.methods.vaults( num ).call()
+}
+
+export const getNestBusd = async( nestContract, account ) => {
+  if( nestContract._address === null ) {
+    return 0
+  }
+  return nestContract.methods.checkBal('0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56').call()
+}
+
 export const approve = async (lpContract, masterChefContract, account) => {
   return lpContract.methods
     .approve(masterChefContract.options.address, ethers.constants.MaxUint256)

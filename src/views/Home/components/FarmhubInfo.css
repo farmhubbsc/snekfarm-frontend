@@ -1,8 +1,82 @@
+.nest-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-image: url(https://i.imgur.com/IGzpK8j.png);
+	background-position: left top;
+	/*background-size: 50%;*/
+    background-repeat: no-repeat;
+}
+
+.nest-header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.nest-number div {
+	font-size: 1.5rem;
+}
+
+.visit-nest-btn {
+	align-items: center;
+    background-color: #960800;
+    border: 0;
+    border-radius: 16px;
+    box-shadow: inset 0px -1px 0px rgb(14 14 44 / 40%);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    height: 48px;
+    line-height: 1;
+    -webkit-letter-spacing: 0.03em;
+    -moz-letter-spacing: 0.03em;
+    -ms-letter-spacing: 0.03em;
+    letter-spacing: 0.03em;
+    justify-content: center;
+    outline: 0;
+    padding: 0 24px;
+    transition: background-color 0.2s;
+    opacity: 1;
+    text-align: center;
+    width: 100%;
+    color: wheat !important;
+    background: linear-gradient(90deg, rgba(240,185,11,1) 0%, rgba(255,117,25,1) 35%, rgba(229,91,0,1) 100%);
+    color: black !important;
+    background-size: 600%;
+    animation: anime 2s linear infinite;
+    margin-top: 3vh;
+}
+
+@keyframes anime {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
 @media screen and (max-width: 768px) {
 	.fhub-info {
 		display: inline-block !important;
 		margin-top: 1vh;
 		margin-bottom: 0.5vh;
+	}
+
+	.nest-card {
+		background-size: 45%;
 	}
 }
 
