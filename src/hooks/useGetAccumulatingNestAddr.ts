@@ -25,9 +25,9 @@ const useGetAccumulatingNestAddr = () => {
       setResult( theNest )
     }
 
-    if (account) {
-      fetchCurrentNest()
-    }
+    
+    fetchCurrentNest()
+    
   }, [nestNum, account, nestMakerContract])
 
   return accumulatingNestAddr

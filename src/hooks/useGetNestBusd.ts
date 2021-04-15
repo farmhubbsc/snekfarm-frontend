@@ -21,9 +21,9 @@ const useGetNestBusd = ( address ) => {
       setBusd(busdVal)
     }
 
-    if (account) {
-      fetchCurrentNest()
-    }
+    
+    fetchCurrentNest()
+    
   }, [account, fastRefresh, nestContract])
 
   return busd
