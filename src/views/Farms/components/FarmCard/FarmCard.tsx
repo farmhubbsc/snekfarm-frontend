@@ -12,6 +12,7 @@ import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
 import CardActionsContainer from './CardActionsContainer'
 import ApyButton from './ApyButton'
+import './SnekBtn.css'
 
 export interface FarmWithStakedValue extends Farm {
   apy?: BigNumber
@@ -130,8 +131,18 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
 
   const { quoteTokenAdresses, quoteTokenSymbol, tokenAddresses, risk } = farm
 
+  let buyLPTokenBtn;
+  if( farm.lpSymbol === 'SNEK-BUSD LP' ) {
+    const lpURL = 'https://exchange.snek.farm/#/add/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56/0x6e74C976E67Feae8E83635936Ef79F969e14E869'
+    buyLPTokenBtn = <div className="lpbtn-container"><a href={lpURL} target="_blank" rel="noreferrer" className="buy-lptoken-btn" >Get LP Tokens</a></div>
+  } else if( farm.lpSymbol === 'SNEK-BNB LP' ) {
+    const lpURL = 'https://exchange.snek.farm/#/add/ETH/0x6e74C976E67Feae8E83635936Ef79F969e14E869'
+    buyLPTokenBtn = <div className="lpbtn-container"><a href={lpURL} target="_blank" rel="noreferrer" className="buy-lptoken-btn" >Get LP Tokens</a></div>
+  }
+
   return (
     <FCard>
+    { buyLPTokenBtn }
       {farm.tokenSymbol === 'SNEK' && <StyledCardAccent />}
       <CardHeading
         lpLabel={lpLabel}
@@ -194,6 +205,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
           tokenAddresses={tokenAddresses}
         />
       </ExpandingWrapper>
+      
     </FCard>
   )
 }

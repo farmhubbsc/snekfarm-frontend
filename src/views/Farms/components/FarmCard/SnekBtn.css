@@ -1,0 +1,75 @@
+
+.lpbutton-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.buy-lptoken-btn {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: #960800;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: inset 0px -1px 0px rgb(14 14 44 / 40%);
+  color: #FFFFFF;
+  cursor: pointer;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  height: 48px;
+  line-height: 1;
+  -webkit-letter-spacing: 0.03em;
+  -moz-letter-spacing: 0.03em;
+  -ms-letter-spacing: 0.03em;
+  letter-spacing: 0.03em;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  outline: 0;
+  padding: 0 24px;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  opacity: 1;
+  text-align: center;
+	width: 70%;
+	color: wheat !important;
+  max-height: 1.25rem;
+  font-size: 0.8rem;
+  margin-bottom: 1vh;
+	background: linear-gradient(-45deg, #8e2de2, #4a00e0);
+  color: white !important;
+	background-size: 600%;
+	-webkit-animation: anime 2s linear infinite;
+	animation: anime 20s linear infinite;
+}
+     
+@keyframes anime {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .buy-lptoken-btn {
+  	/*padding: 2rem;*/
+    padding: 0.2rem;
+  	padding-right: 0.2rem;
+  	padding-left: 0.2rem;
+  	margin-left: 2vw;
+  }
+}
