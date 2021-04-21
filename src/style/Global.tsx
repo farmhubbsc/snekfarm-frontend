@@ -13,7 +13,9 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: ${({ theme }) => theme.colors.background};
-    background: url(https://snek.farm/images/backgrounds/pattern-v4.png);
+    background: url(/images/backgrounds/bg-3.png);
+    background-attachment: fixed;
+    background-size: cover;
     img {
       height: auto;
       max-width: 100%;
