@@ -41,6 +41,10 @@ const infoText = {
   display: 'flex',
 }
 
+const CardBodyStyle = {
+  width: '100%',
+}
+
 const NestCard = () => {
   const TranslateString = useI18n()
   // const data = useGetStats()
@@ -55,9 +59,10 @@ const NestCard = () => {
   const currentNestBUSD = useGetNestBusd(currentNestAddr) / 1000000000000000000
   // const tvl = totalValue.toFixed(2);
 
+
   return (
     <StyledTotalValueLockedCard>
-      <CardBody>
+      <CardBody style={CardBodyStyle}>
         <div className="nest-card">
           <div className="nest-header">
             <img src="https://farmhub.community/images/nest-eagle-busd.png" style={logoStyle} alt="snek" />
