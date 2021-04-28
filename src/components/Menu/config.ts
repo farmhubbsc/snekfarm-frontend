@@ -32,6 +32,11 @@ const config: MenuEntry[] = [
         icon: 'SnekFarmIcon'
       },
       {
+        label: 'Cobra.Farm',
+        href: 'https://cobra.farm',
+        icon: 'CobraIcon'
+      },
+      {
         label: 'Eagle.Farm',
         href: 'https://eagle.farm',
         icon: 'EagleFarmIcon'
